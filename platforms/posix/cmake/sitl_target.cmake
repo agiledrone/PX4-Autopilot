@@ -106,6 +106,7 @@ set(models
 	cloudship
 	if750a
 	iris
+    owl
 	iris_ctrlalloc
 	iris_dual_gps
 	iris_foggy_lidar

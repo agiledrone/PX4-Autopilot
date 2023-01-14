@@ -269,9 +269,11 @@
 
 #if defined(BOARD_OVERLOAD_LED)
 #  define BOARD_OVERLOAD_LED_TOGGLE() led_toggle(BOARD_OVERLOAD_LED)
+#  define BOARD_OVERLOAD_LED_ON()     led_on(BOARD_OVERLOAD_LED)//LRB
 #  define BOARD_OVERLOAD_LED_OFF()    led_off(BOARD_OVERLOAD_LED)
 #else
 #  define BOARD_OVERLOAD_LED_TOGGLE()
+#  define BOARD_OVERLOAD_LED_ON()
 #  define BOARD_OVERLOAD_LED_OFF()
 #endif
 

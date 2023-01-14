@@ -165,10 +165,10 @@ bool MulticopterLandDetector::_get_ground_contact_state()
 		// an accurate in-air indication.
 		float max_climb_rate = math::min(land_speed_threshold * 0.5f, _param_lndmc_z_vel_max.get());
 
-		if ((time_now_us - _landed_time) < LAND_DETECTOR_LAND_PHASE_TIME_US) {
+		if ((time_now_us - _landed_time) < LAND_DETECTOR_LAND_PHASE_TIME_US) {//2s
 			// Widen acceptance thresholds for landed state right after arming
 			// so that motor spool-up and other effects do not trigger false negatives.
-			max_climb_rate = _param_lndmc_z_vel_max.get() * 2.5f;
+			max_climb_rate = _param_lndmc_z_vel_max.get() * 2.5f;// 2.5f
 		}
 
 		_vertical_movement = (fabsf(_vehicle_local_position.vz) > max_climb_rate);
@@ -277,22 +277,23 @@ bool MulticopterLandDetector::_get_maybe_landed_state()
 	}
 
 
-	float landThresholdFactor = 1.f;
+	//float landThresholdFactor = 1.f;//LRB
 
 	// Widen acceptance thresholds for landed state right after landed
-	if ((time_now_us - _landed_time) < LAND_DETECTOR_LAND_PHASE_TIME_US) {
-		landThresholdFactor = 2.5f;
-	}
+	//if ((time_now_us - _landed_time) < LAND_DETECTOR_LAND_PHASE_TIME_US) {
+		//landThresholdFactor = 2.5f;
+	//}
 
-	// Next look if all rotation angles are not moving.
-	vehicle_angular_velocity_s vehicle_angular_velocity{};
+	// Next look if all rotation angles are not moving.//LRB
+
+	/*vehicle_angular_velocity_s vehicle_angular_velocity{};
 	_vehicle_angular_velocity_sub.copy(&vehicle_angular_velocity);
 	const Vector2f angular_velocity{vehicle_angular_velocity.xyz[0], vehicle_angular_velocity.xyz[1]};
 	const float max_rotation_scaled = math::radians(_param_lndmc_rot_max.get()) * landThresholdFactor;
 
 	if (angular_velocity.norm() > max_rotation_scaled) {
 		return false;
-	}
+	}*/
 
 	// If vertical velocity is available: ground contact, no thrust, no movement -> landed
 	if (((time_now_us - _vehicle_local_position.timestamp) < 1_s) && _vehicle_local_position.v_z_valid) {

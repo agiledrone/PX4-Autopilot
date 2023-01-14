@@ -1988,6 +1988,8 @@ Commander::run()
 			// Check for auto-disarm on landing or pre-flight
 			if (_param_com_disarm_land.get() > 0 || _param_com_disarm_preflight.get() > 0) {
 
+
+
 				if (_param_com_disarm_land.get() > 0 && _have_taken_off_since_arming) {
 					_auto_disarm_landed.set_hysteresis_time_from(false, _param_com_disarm_land.get() * 1_s);
 					_auto_disarm_landed.set_state_and_update(_land_detector.landed, hrt_absolute_time());
@@ -1996,6 +1998,10 @@ Commander::run()
 					_auto_disarm_landed.set_hysteresis_time_from(false, _param_com_disarm_preflight.get() * 1_s);
 					_auto_disarm_landed.set_state_and_update(true, hrt_absolute_time());
 				}
+
+
+
+
 
 				if (_auto_disarm_landed.get_state()) {
 					if (_have_taken_off_since_arming) {
@@ -2395,8 +2401,9 @@ Commander::run()
 			/* Check engine failure
 			 * only for fixed wing for now
 			 */
-			if (!_status_flags.circuit_breaker_engaged_enginefailure_check &&
-			    _status.vehicle_type == vehicle_status_s::VEHICLE_TYPE_FIXED_WING && !_status.is_vtol && _armed.armed) {
+
+			 if (!_status_flags.circuit_breaker_engaged_enginefailure_check &&
+			    _status.vehicle_type == vehicle_status_s::VEHICLE_TYPE_FIXED_WING && !_status.is_vtol && _armed.armed){
 
 				actuator_controls_s actuator_controls{};
 				_actuator_controls_sub.copy(&actuator_controls);
@@ -2872,20 +2879,77 @@ Commander::control_status_leds(bool changed, const uint8_t battery_warning)
 				BOARD_ARMED_STATE_LED_TOGGLE();
 			}
 
-		} else {
-			BOARD_ARMED_STATE_LED_OFF();
-
-			/* armed, solid */
-			BOARD_ARMED_LED_ON();
+		} else {//LRB ARMED
+			if (_internal_state.main_state == commander_state_s::MAIN_STATE_POSCTL) {
+				BOARD_ARMED_STATE_LED_OFF();
+                                BOARD_OVERLOAD_LED_OFF();
+			        /* armed, solid */
+			        BOARD_ARMED_LED_ON();
+			} else if (_internal_state.main_state == commander_state_s::MAIN_STATE_OFFBOARD) {//
+                                BOARD_ARMED_LED_OFF();
+				BOARD_ARMED_STATE_LED_OFF();
+                                BOARD_OVERLOAD_LED_ON();
+			} else {
+				BOARD_OVERLOAD_LED_OFF();
+                                BOARD_ARMED_LED_OFF();
+			        BOARD_ARMED_STATE_LED_ON();
+			}
 		}
 
-	} else if (_armed.ready_to_arm) {
-		BOARD_ARMED_LED_OFF();
+	} else if (_armed.ready_to_arm) {//LRB DISARM
 
-		/* ready to arm, blink at 1Hz */
-		if (_leds_counter % 20 == 0) {
-			BOARD_ARMED_STATE_LED_TOGGLE();
-		}
+			const vehicle_local_position_s &lpos = _local_position_sub.get();
+
+                        if (_status_flags.condition_local_position_valid && (fabsf(lpos.vx) > 2.0f || fabsf(lpos.vy) > 2.0f || fabsf(lpos.vz) > 2.0f)) {
+				set_tune(tune_control_s::TUNE_ID_NOTIFY_NEGATIVE);
+				BOARD_ARMED_STATE_LED_OFF();
+                                BOARD_ARMED_LED_OFF();
+
+				if (_leds_counter % 3 == 0) {
+					BOARD_OVERLOAD_LED_TOGGLE();
+				}
+
+			} else  if (_internal_state.main_state == commander_state_s::MAIN_STATE_POSCTL) {
+				BOARD_ARMED_STATE_LED_OFF();
+				BOARD_OVERLOAD_LED_OFF();
+		       		 /* ready to arm, blink at 1Hz */
+				if ((_leds_counter % 100 == 0) || ((_leds_counter-20) % 100 == 0)) {
+					BOARD_ARMED_LED_ON();
+				} else if (_leds_counter % 10 == 0) {
+					BOARD_ARMED_LED_OFF();
+				}
+			} else if(_internal_state.main_state == commander_state_s::MAIN_STATE_OFFBOARD) {//
+				BOARD_ARMED_STATE_LED_OFF();
+                                BOARD_ARMED_LED_OFF();
+
+				if ((_leds_counter % 100 == 0) || ((_leds_counter-20) % 100 == 0)) {
+					BOARD_OVERLOAD_LED_ON();
+				} else if (_leds_counter % 10 == 0) {
+					BOARD_OVERLOAD_LED_OFF();
+				}
+			} else {
+				BOARD_OVERLOAD_LED_OFF();
+				BOARD_ARMED_LED_OFF();
+
+				if(!_last_condition_local_position_valid && _status_flags.condition_local_position_valid) {
+					set_tune(tune_control_s::TUNE_ID_HOME_SET);
+				}
+
+                                if (_status_flags.condition_local_position_valid) {
+                                        /* ready to arm, blink at 0.5Hz */
+					if ((_leds_counter % 100 == 0) || ((_leds_counter-20) % 100 == 0)) {
+						BOARD_ARMED_STATE_LED_ON();
+						//BOARD_ARMED_STATE_LED_TOGGLE();
+					} else if (_leds_counter % 10 == 0) {
+						BOARD_ARMED_STATE_LED_OFF();
+					}
+				} else {
+					/* ready to arm, blink at 1Hz */
+					if (_leds_counter % 60 == 0) {
+						BOARD_ARMED_STATE_LED_TOGGLE();
+					}
+				}
+			}
 
 	} else {
 		BOARD_ARMED_LED_OFF();
@@ -2899,14 +2963,14 @@ Commander::control_status_leds(bool changed, const uint8_t battery_warning)
 #endif
 
 	/* give system warnings on error LED */
-	if (overload) {
+	/*if (overload) {
 		if (_leds_counter % 2 == 0) {
 			BOARD_OVERLOAD_LED_TOGGLE();
 		}
 
 	} else {
 		BOARD_OVERLOAD_LED_OFF();
-	}
+	}*/
 
 	_leds_counter++;
 }
@@ -3916,10 +3980,13 @@ void Commander::UpdateEstimateValidity()
 		check_posvel_validity(lpos.xy_valid && !_nav_test_failed, gpos.eph, _param_com_pos_fs_eph.get(), gpos.timestamp,
 				      &_last_gpos_fail_time_us, &_gpos_probation_time_us, _status_flags.condition_global_position_valid);
 
+	//if(fabsf(lpos.vx) > 1.0f || fabsf(lpos.vy) > 1.0f || fabsf(lpos.vz) > 1.0f ){
+        //        _status_flags.condition_local_position_valid = 0;
+	//} else {
 	_status_flags.condition_local_position_valid =
 		check_posvel_validity(lpos.xy_valid && !_nav_test_failed, lpos.eph, lpos_eph_threshold_adj, lpos.timestamp,
 				      &_last_lpos_fail_time_us, &_lpos_probation_time_us, _status_flags.condition_local_position_valid);
-
+	//}
 	_status_flags.condition_local_velocity_valid =
 		check_posvel_validity(lpos.v_xy_valid && !_nav_test_failed, lpos.evh, _param_com_vel_fs_evh.get(), lpos.timestamp,
 				      &_last_lvel_fail_time_us, &_lvel_probation_time_us, _status_flags.condition_local_velocity_valid);

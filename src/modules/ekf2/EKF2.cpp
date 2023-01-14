@@ -988,7 +988,10 @@ void EKF2::PublishSensorBias(const hrt_abstime &timestamp)
 	    || (mag_bias - _last_mag_bias_published).longerThan(0.001f)) {
 
 		// take device ids from sensor_selection_s if not using specific vehicle_imu_s
-		if (_device_id_gyro != 0) {
+                //TIGER: when gyro_bias exceed the gyro_bias_limit, skip the publish
+		if (_device_id_gyro != 0 && (float) fabs(gyro_bias(0)) < math::radians(10.f)
+				&& (float) fabs(gyro_bias(1)) < math::radians(10.f)
+				&& (float) fabs(gyro_bias(2)) < math::radians(10.f)) {
 			bias.gyro_device_id = _device_id_gyro;
 			gyro_bias.copyTo(bias.gyro_bias);
 			bias.gyro_bias_limit = math::radians(20.f); // 20 degrees/s see Ekf::constrainStates()

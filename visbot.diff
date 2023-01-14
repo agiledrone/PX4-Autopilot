@@ -1,0 +1,548 @@
+diff --git a/.gitmodules b/.gitmodules
+index b019469bf9..3d6e085370 100644
+--- a/.gitmodules
++++ b/.gitmodules
+@@ -1,72 +1,107 @@
+-[submodule "mavlink/include/mavlink/v2.0"]
+-	path = mavlink/include/mavlink/v2.0
+-	url = https://github.com/mavlink/c_library_v2.git
++[submodule "src/modules/mavlink/mavlink"]
++	path = src/modules/mavlink/mavlink
++	url = https://gitee.com/tsxx42mcj/mavlink.git
+ 	branch = master
+ [submodule "src/drivers/uavcan/libuavcan"]
+ 	path = src/drivers/uavcan/libuavcan
+-	url = https://github.com/PX4/libuavcan.git
+-	branch = px4
++	url = https://gitee.com/tsxx42mcj/libuavcan.git
++	branch = main
+ [submodule "Tools/jMAVSim"]
+ 	path = Tools/jMAVSim
+-	url = https://github.com/PX4/jMAVSim.git
++	url = https://gitee.com/tsxx42mcj/jMAVSim.git
+ 	branch = master
+ [submodule "Tools/sitl_gazebo"]
+ 	path = Tools/sitl_gazebo
+-	url = https://github.com/PX4/PX4-SITL_gazebo.git
+-	branch = master
+-[submodule "src/lib/matrix"]
+-	path = src/lib/matrix
+-	url = https://github.com/PX4/PX4-Matrix.git
+-	branch = master
+-[submodule "src/lib/ecl"]
+-	path = src/lib/ecl
+-	url = https://github.com/PX4/PX4-ECL.git
++	url = https://gitee.com/tsxx42mcj/PX4-SITL_gazebo.git
+ 	branch = master
+-[submodule "boards/atlflight/cmake_hexagon"]
+-	path = boards/atlflight/cmake_hexagon
+-	url = https://github.com/PX4/cmake_hexagon.git
+-	branch = px4
+ [submodule "src/drivers/gps/devices"]
+ 	path = src/drivers/gps/devices
+-	url = https://github.com/PX4/PX4-GPSDrivers.git
++	url = https://gitee.com/tsxx42mcj/PX4-GPSDrivers.git
+ 	branch = master
+ [submodule "src/modules/micrortps_bridge/micro-CDR"]
+ 	path = src/modules/micrortps_bridge/micro-CDR
+-	url = https://github.com/PX4/Micro-CDR.git
++	url = https://gitee.com/tsxx42mcj/Micro-CDR.git
+ 	branch = master
+ [submodule "platforms/nuttx/NuttX/nuttx"]
+ 	path = platforms/nuttx/NuttX/nuttx
+-	url = https://github.com/PX4/NuttX.git
+-	branch = px4_firmware_nuttx-10.0.0+
++	url = https://gitee.com/tsxx42mcj/NuttX.git
++	branch = px4_firmware_nuttx-10.1.0+
+ [submodule "platforms/nuttx/NuttX/apps"]
+ 	path = platforms/nuttx/NuttX/apps
+-	url = https://github.com/PX4/NuttX-apps.git
+-	branch = px4_firmware_nuttx-10.0.0+
+-[submodule "platforms/qurt/dspal"]
+-	path = platforms/qurt/dspal
+-	url = https://github.com/ATLFlight/dspal.git
++	url = https://gitee.com/tsxx42mcj/NuttX-apps.git
++	branch = px4_firmware_nuttx-10.1.0+
+ [submodule "Tools/flightgear_bridge"]
+ 	path = Tools/flightgear_bridge
+-	url = https://github.com/PX4/PX4-FlightGear-Bridge.git
++	url = https://gitee.com/tsxx42mcj/PX4-FlightGear-Bridge.git
+ [submodule "Tools/jsbsim_bridge"]
+ 	path = Tools/jsbsim_bridge
+-	url = https://github.com/PX4/px4-jsbsim-bridge.git
++	url = https://gitee.com/tsxx42mcj/px4-jsbsim-bridge.git
++[submodule "src/drivers/cyphal/libcanard"]
++	path = src/drivers/cyphal/libcanard
++	url = https://gitee.com/tsxx42mcj/libcanard.git
++[submodule "src/drivers/cyphal/public_regulated_data_types"]
++	path = src/drivers/cyphal/public_regulated_data_types
++	url = https://gitee.com/tsxx42mcj/public_regulated_data_types.git
++[submodule "src/drivers/cyphal/legacy_data_types"]
++	path = src/drivers/cyphal/legacy_data_types
++	url = https://gitee.com/tsxx42mcj/public_regulated_data_types.git
++	branch = legacy
++[submodule "src/lib/crypto/monocypher"]
++	path = src/lib/crypto/monocypher
++	url = https://gitee.com/tsxx42mcj/Monocypher.git
++	branch = px4
++[submodule "src/lib/events/libevents"]
++	path = src/lib/events/libevents
++	url = https://gitee.com/tsxx42mcj/libevents.git
++[submodule "Tools/simulation-ignition"]
++	path = Tools/simulation-ignition
++	url = https://gitee.com/tsxx42mcj/px4-simulation-ignition.git
++[submodule "src/lib/crypto/libtomcrypt"]
++	path = src/lib/crypto/libtomcrypt
++	url = https://gitee.com/tsxx42mcj/libtomcrypt.git
++	branch = px4
++[submodule "src/lib/crypto/libtommath"]
++	path = src/lib/crypto/libtommath
++	url = https://gitee.com/tsxx42mcj/libtommath.git
++	branch = px4
++[submodule "src/modules/microdds_client/Micro-XRCE-DDS-Client"]
++	path = src/modules/microdds_client/Micro-XRCE-DDS-Client
++	url = https://gitee.com/tsxx42mcj/Micro-XRCE-DDS-Client.git
++[submodule "mavlink/include/mavlink/v2.0"]
++        path = mavlink/include/mavlink/v2.0
++        url = https://gitee.com/amovlab1/p_c_library_v2.git
++[submodule "platforms/qurt/dspal"]
++        path = platforms/qurt/dspal
++        url = https://gitee.com/aimoziros/dspal.git
++[submodule "src/drivers/uavcan_v1/legacy_data_types"]
++        path = src/drivers/uavcan_v1/legacy_data_types
++        url = https://gitee.com/tsxx42mcj/public_regulated_data_types.git
+ [submodule "src/drivers/uavcan_v1/libcanard"]
+ 	path = src/drivers/uavcan_v1/libcanard
+-	url = https://github.com/UAVCAN/libcanard.git
++        url = https://gitee.com/tsxx42mcj/libcanard.git
+ [submodule "src/drivers/uavcan_v1/public_regulated_data_types"]
+-	path = src/drivers/uavcan_v1/public_regulated_data_types
+-	url = https://github.com/UAVCAN/public_regulated_data_types.git
+-[submodule "src/drivers/uavcannode_gps_demo/public_regulated_data_types"]
+-	path = src/drivers/uavcannode_gps_demo/public_regulated_data_types
+-	url = https://github.com/UAVCAN/public_regulated_data_types.git
++        path = src/drivers/uavcan_v1/public_regulated_data_types
++        url = https://gitee.com/tsxx42mcj/public_regulated_data_types.git
+ [submodule "src/drivers/uavcannode_gps_demo/libcanard"]
+-	path = src/drivers/uavcannode_gps_demo/libcanard
+-	url = https://github.com/UAVCAN/libcanard.git
+-[submodule "src/drivers/uavcan_v1/legacy_data_types"]
+-	path = src/drivers/uavcan_v1/legacy_data_types
+-	url = https://github.com/PX4/public_regulated_data_types.git
+-	branch = legacy
+-[submodule "src/lib/crypto/monocypher"]
+-	path = src/lib/crypto/monocypher
+-	url = https://github.com/PX4/Monocypher.git
++        path = src/drivers/uavcannode_gps_demo/libcanard
++        url = https://gitee.com/tsxx42mcj/libcanard.git
++[submodule "src/drivers/uavcannode_gps_demo/public_regulated_data_types"]
++        path = src/drivers/uavcannode_gps_demo/public_regulated_data_types
++        url = https://gitee.com/tsxx42mcj/public_regulated_data_types.git
++[submodule "src/lib/ecl"]
++        path = src/lib/ecl
++	#url = https://gitee.com/reza666/PX4-ECL.git
++        url = https://github.com/PX4/PX4-ECL.git
++[submodule "src/lib/matrix"]
++        path = src/lib/matrix
++	#url = https://gitee.com/reza666/PX4-Matrix.git
++	url = https://github.com/PX4/PX4-Matrix.git
++[submodule "boards/atlflight/cmake_hexagon"]
++        path = boards/atlflight/cmake_hexagon
++        url = https://gitee.com/github-ch/cmake_hexagon.git
++
++
++
++
++
++
+diff --git a/ROMFS/px4fmu_common/init.d-posix/airframes/CMakeLists.txt b/ROMFS/px4fmu_common/init.d-posix/airframes/CMakeLists.txt
+index 660e68704c..bd84e65b6e 100644
+--- a/ROMFS/px4fmu_common/init.d-posix/airframes/CMakeLists.txt
++++ b/ROMFS/px4fmu_common/init.d-posix/airframes/CMakeLists.txt
+@@ -33,6 +33,7 @@
+ 
+ px4_add_romfs_files(
+ 	10016_iris
++	10050_owl
+ 	10017_iris_ctrlalloc
+ 	10018_iris_foggy_lidar
+ 	10020_if750a
+diff --git a/Tools/gazebo_sitl_multiple_run.sh b/Tools/gazebo_sitl_multiple_run.sh
+index 1b708fa174..5a137aa3a2 100755
+--- a/Tools/gazebo_sitl_multiple_run.sh
++++ b/Tools/gazebo_sitl_multiple_run.sh
+@@ -20,7 +20,7 @@ function spawn_model() {
+ 	X=${X:=0.0}
+ 	Y=${Y:=$((3*${N}))}
+ 
+-	SUPPORTED_MODELS=("iris" "plane" "standard_vtol" "rover" "r1_rover" "typhoon_h480")
++	SUPPORTED_MODELS=("iris" "owl" "plane" "standard_vtol" "rover" "r1_rover" "typhoon_h480")
+ 	if [[ " ${SUPPORTED_MODELS[*]} " != *"$MODEL"* ]];
+ 	then
+ 		echo "ERROR: Currently only vehicle model $MODEL is not supported!"
+diff --git a/Tools/jsbsim_bridge b/Tools/jsbsim_bridge
+--- a/Tools/jsbsim_bridge
++++ b/Tools/jsbsim_bridge
+@@ -1 +1 @@
+-Subproject commit e070c50d591541d440510b65c9da5cad1db5aa9a
++Subproject commit e070c50d591541d440510b65c9da5cad1db5aa9a-dirty
+diff --git a/Tools/sitl_gazebo b/Tools/sitl_gazebo
+--- a/Tools/sitl_gazebo
++++ b/Tools/sitl_gazebo
+@@ -1 +1 @@
+-Subproject commit 822050a7ab6fd87972e59f16312f451bce217a56
++Subproject commit 822050a7ab6fd87972e59f16312f451bce217a56-dirty
+diff --git a/boards/px4/fmu-v4/src/board_config.h b/boards/px4/fmu-v4/src/board_config.h
+index a822097199..04cc4d2de3 100644
+--- a/boards/px4/fmu-v4/src/board_config.h
++++ b/boards/px4/fmu-v4/src/board_config.h
+@@ -64,8 +64,8 @@
+ 
+ #define BOARD_HAS_CONTROL_STATUS_LEDS 1
+ #define BOARD_OVERLOAD_LED     LED_RED
+-#define BOARD_ARMED_LED        LED_BLUE
+-#define BOARD_ARMED_STATE_LED  LED_GREEN
++#define BOARD_ARMED_LED        LED_GREEN//LED_BLUE//LRB
++#define BOARD_ARMED_STATE_LED  LED_BLUE//LED_GREEN
+ 
+ #ifdef CONFIG_STM32_SPI4
+ #  define BOARD_HAS_BUS_MANIFEST 1 // We support a bus manifest because spi 4 is optional
+diff --git a/platforms/common/include/px4_platform_common/board_common.h b/platforms/common/include/px4_platform_common/board_common.h
+index d6f83e3cb5..f938e3937a 100644
+--- a/platforms/common/include/px4_platform_common/board_common.h
++++ b/platforms/common/include/px4_platform_common/board_common.h
+@@ -269,9 +269,11 @@
+ 
+ #if defined(BOARD_OVERLOAD_LED)
+ #  define BOARD_OVERLOAD_LED_TOGGLE() led_toggle(BOARD_OVERLOAD_LED)
++#  define BOARD_OVERLOAD_LED_ON()     led_on(BOARD_OVERLOAD_LED)//LRB
+ #  define BOARD_OVERLOAD_LED_OFF()    led_off(BOARD_OVERLOAD_LED)
+ #else
+ #  define BOARD_OVERLOAD_LED_TOGGLE()
++#  define BOARD_OVERLOAD_LED_ON()
+ #  define BOARD_OVERLOAD_LED_OFF()
+ #endif
+ 
+diff --git a/platforms/posix/Debug/launch_sim.json.in b/platforms/posix/Debug/launch_sim.json.in
+index f10f425efd..057bdc28c3 100644
+--- a/platforms/posix/Debug/launch_sim.json.in
++++ b/platforms/posix/Debug/launch_sim.json.in
+@@ -48,6 +48,52 @@
+                 ]
+             }
+         },
++        {
++            "name": "SITL (jmavsim owl)",
++            "type": "cppdbg",
++            "request": "launch",
++            "program": "${command:cmake.launchTargetPath}",
++            "args": [
++                "${workspaceFolder}/ROMFS/px4fmu_common",
++                "-s", "etc/init.d-posix/rcS",
++                "-t", "${workspaceFolder}/test_data"
++            ],
++            "stopAtEntry": false,
++            "cwd": "${command:cmake.buildDirectory}/tmp",
++            "environment": [
++                {
++                    "name": "PX4_SIM_MODEL",
++                    "value": "owl"
++                }
++            ],
++            "preLaunchTask": "jmavsim",
++            "postDebugTask": "jmavsim kill",
++            "linux": {
++                "MIMode": "gdb",
++                "externalConsole": false,
++                "setupCommands": [
++                    {
++                        "description": "Enable pretty-printing for gdb",
++                        "text": "-enable-pretty-printing",
++                        "ignoreFailures": true
++                    },
++                    {
++                        "description": "PX4 ignore wq signals",
++                        "text": "handle SIGCONT nostop noprint nopass",
++                        "ignoreFailures": true
++                    }
++                ]
++            },
++            "osx": {
++                "MIMode": "lldb",
++                "externalConsole": true,
++                "setupCommands": [
++                    {
++                        "text": "pro hand -p true -s false -n false SIGCONT",
++                    }
++                ]
++            }
++        },
+         {
+             "name": "SITL (jmavsim iris)",
+             "type": "cppdbg",
+@@ -146,6 +192,7 @@
+             "description": "PX4_SIM_MODEL",
+             "options": [
+               "iris",
++              "owl",
+               "typhoon_h480",
+               "plane",
+               "plane_catapult",
+diff --git a/platforms/posix/cmake/sitl_target.cmake b/platforms/posix/cmake/sitl_target.cmake
+index f1ef214642..e5e7c62947 100644
+--- a/platforms/posix/cmake/sitl_target.cmake
++++ b/platforms/posix/cmake/sitl_target.cmake
+@@ -106,6 +106,7 @@ set(models
+ 	cloudship
+ 	if750a
+ 	iris
++    owl
+ 	iris_ctrlalloc
+ 	iris_dual_gps
+ 	iris_foggy_lidar
+diff --git a/src/drivers/uavcan/libuavcan b/src/drivers/uavcan/libuavcan
+--- a/src/drivers/uavcan/libuavcan
++++ b/src/drivers/uavcan/libuavcan
+@@ -1 +1 @@
+-Subproject commit 29e1aa6c12e3590252b102153d8c62155047a676
++Subproject commit 29e1aa6c12e3590252b102153d8c62155047a676-dirty
+diff --git a/src/lib/ecl b/src/lib/ecl
+--- a/src/lib/ecl
++++ b/src/lib/ecl
+@@ -1 +1 @@
+-Subproject commit b3fed06fe822d08d19ab1d2c2f8daf7b7d21951c
++Subproject commit b3fed06fe822d08d19ab1d2c2f8daf7b7d21951c-dirty
+diff --git a/src/lib/tunes/tune_definition.desc b/src/lib/tunes/tune_definition.desc
+index 1219afec1e..b5aedf41ec 100644
+--- a/src/lib/tunes/tune_definition.desc
++++ b/src/lib/tunes/tune_definition.desc
+@@ -86,7 +86,7 @@
+ //           ordinal name                  tune                                        interruptable*     hint
+ //  * Repeated tunes should always be defined as interruptable, if not an explict 'tone_control stop' is needed
+ PX4_DEFINE_TUNE(0,  CUSTOM,                "",                                              true  /*  empty to align with the index */)
+-PX4_DEFINE_TUNE(1,  STARTUP,               "MFT240L8 O4aO5dc O4aO5dc O4aO5dc L16dcdcdcdc",  true  /*  startup tune */)
++PX4_DEFINE_TUNE(1,  STARTUP,               "MFT240L4<c8d8ec8<a8MLP4>d<bg8e8MLP4bag8c8P4ge", true  /*  startup tune */)//LRB
+ PX4_DEFINE_TUNE(2,  ERROR_TUNE,            "MBT200a8a8a8PaaaP",                             true  /*  ERROR tone */)
+ PX4_DEFINE_TUNE(3,  NOTIFY_POSITIVE,       "MFT200e8a8a",                                   true  /*  Notify Positive tone */)
+ PX4_DEFINE_TUNE(4,  NOTIFY_NEUTRAL,        "MFT200e8e",                                     true  /*  Notify Neutral tone */)
+diff --git a/src/modules/commander/Commander.cpp b/src/modules/commander/Commander.cpp
+index 1cf60e82ba..2815d7d5e1 100644
+--- a/src/modules/commander/Commander.cpp
++++ b/src/modules/commander/Commander.cpp
+@@ -1988,6 +1988,8 @@ Commander::run()
+ 			// Check for auto-disarm on landing or pre-flight
+ 			if (_param_com_disarm_land.get() > 0 || _param_com_disarm_preflight.get() > 0) {
+ 
++
++
+ 				if (_param_com_disarm_land.get() > 0 && _have_taken_off_since_arming) {
+ 					_auto_disarm_landed.set_hysteresis_time_from(false, _param_com_disarm_land.get() * 1_s);
+ 					_auto_disarm_landed.set_state_and_update(_land_detector.landed, hrt_absolute_time());
+@@ -1997,6 +1999,10 @@ Commander::run()
+ 					_auto_disarm_landed.set_state_and_update(true, hrt_absolute_time());
+ 				}
+ 
++
++
++
++
+ 				if (_auto_disarm_landed.get_state()) {
+ 					if (_have_taken_off_since_arming) {
+ 						disarm(arm_disarm_reason_t::AUTO_DISARM_LAND);
+@@ -2395,8 +2401,9 @@ Commander::run()
+ 			/* Check engine failure
+ 			 * only for fixed wing for now
+ 			 */
+-			if (!_status_flags.circuit_breaker_engaged_enginefailure_check &&
+-			    _status.vehicle_type == vehicle_status_s::VEHICLE_TYPE_FIXED_WING && !_status.is_vtol && _armed.armed) {
++
++			 if (!_status_flags.circuit_breaker_engaged_enginefailure_check &&
++			    _status.vehicle_type == vehicle_status_s::VEHICLE_TYPE_FIXED_WING && !_status.is_vtol && _armed.armed){
+ 
+ 				actuator_controls_s actuator_controls{};
+ 				_actuator_controls_sub.copy(&actuator_controls);
+@@ -2872,20 +2879,77 @@ Commander::control_status_leds(bool changed, const uint8_t battery_warning)
+ 				BOARD_ARMED_STATE_LED_TOGGLE();
+ 			}
+ 
+-		} else {
+-			BOARD_ARMED_STATE_LED_OFF();
+-
+-			/* armed, solid */
+-			BOARD_ARMED_LED_ON();
++		} else {//LRB ARMED
++			if (_internal_state.main_state == commander_state_s::MAIN_STATE_POSCTL) {
++				BOARD_ARMED_STATE_LED_OFF();
++                                BOARD_OVERLOAD_LED_OFF();
++			        /* armed, solid */
++			        BOARD_ARMED_LED_ON();
++			} else if (_internal_state.main_state == commander_state_s::MAIN_STATE_OFFBOARD) {//
++                                BOARD_ARMED_LED_OFF();
++				BOARD_ARMED_STATE_LED_OFF();
++                                BOARD_OVERLOAD_LED_ON();
++			} else {
++				BOARD_OVERLOAD_LED_OFF();
++                                BOARD_ARMED_LED_OFF();
++			        BOARD_ARMED_STATE_LED_ON();
++			}
+ 		}
+ 
+-	} else if (_armed.ready_to_arm) {
+-		BOARD_ARMED_LED_OFF();
++	} else if (_armed.ready_to_arm) {//LRB DISARM
+ 
+-		/* ready to arm, blink at 1Hz */
+-		if (_leds_counter % 20 == 0) {
+-			BOARD_ARMED_STATE_LED_TOGGLE();
+-		}
++			const vehicle_local_position_s &lpos = _local_position_sub.get();
++
++                        if (_status_flags.condition_local_position_valid && (fabsf(lpos.vx) > 2.0f || fabsf(lpos.vy) > 2.0f || fabsf(lpos.vz) > 2.0f)) {
++				set_tune(tune_control_s::TUNE_ID_NOTIFY_NEGATIVE);
++				BOARD_ARMED_STATE_LED_OFF();
++                                BOARD_ARMED_LED_OFF();
++
++				if (_leds_counter % 3 == 0) {
++					BOARD_OVERLOAD_LED_TOGGLE();
++				}
++
++			} else  if (_internal_state.main_state == commander_state_s::MAIN_STATE_POSCTL) {
++				BOARD_ARMED_STATE_LED_OFF();
++				BOARD_OVERLOAD_LED_OFF();
++		       		 /* ready to arm, blink at 1Hz */
++				if ((_leds_counter % 100 == 0) || ((_leds_counter-20) % 100 == 0)) {
++					BOARD_ARMED_LED_ON();
++				} else if (_leds_counter % 10 == 0) {
++					BOARD_ARMED_LED_OFF();
++				}
++			} else if(_internal_state.main_state == commander_state_s::MAIN_STATE_OFFBOARD) {//
++				BOARD_ARMED_STATE_LED_OFF();
++                                BOARD_ARMED_LED_OFF();
++
++				if ((_leds_counter % 100 == 0) || ((_leds_counter-20) % 100 == 0)) {
++					BOARD_OVERLOAD_LED_ON();
++				} else if (_leds_counter % 10 == 0) {
++					BOARD_OVERLOAD_LED_OFF();
++				}
++			} else {
++				BOARD_OVERLOAD_LED_OFF();
++				BOARD_ARMED_LED_OFF();
++
++				if(!_last_condition_local_position_valid && _status_flags.condition_local_position_valid) {
++					set_tune(tune_control_s::TUNE_ID_HOME_SET);
++				}
++
++                                if (_status_flags.condition_local_position_valid) {
++                                        /* ready to arm, blink at 0.5Hz */
++					if ((_leds_counter % 100 == 0) || ((_leds_counter-20) % 100 == 0)) {
++						BOARD_ARMED_STATE_LED_ON();
++						//BOARD_ARMED_STATE_LED_TOGGLE();
++					} else if (_leds_counter % 10 == 0) {
++						BOARD_ARMED_STATE_LED_OFF();
++					}
++				} else {
++					/* ready to arm, blink at 1Hz */
++					if (_leds_counter % 60 == 0) {
++						BOARD_ARMED_STATE_LED_TOGGLE();
++					}
++				}
++			}
+ 
+ 	} else {
+ 		BOARD_ARMED_LED_OFF();
+@@ -2899,14 +2963,14 @@ Commander::control_status_leds(bool changed, const uint8_t battery_warning)
+ #endif
+ 
+ 	/* give system warnings on error LED */
+-	if (overload) {
++	/*if (overload) {
+ 		if (_leds_counter % 2 == 0) {
+ 			BOARD_OVERLOAD_LED_TOGGLE();
+ 		}
+ 
+ 	} else {
+ 		BOARD_OVERLOAD_LED_OFF();
+-	}
++	}*/
+ 
+ 	_leds_counter++;
+ }
+@@ -3916,10 +3980,13 @@ void Commander::UpdateEstimateValidity()
+ 		check_posvel_validity(lpos.xy_valid && !_nav_test_failed, gpos.eph, _param_com_pos_fs_eph.get(), gpos.timestamp,
+ 				      &_last_gpos_fail_time_us, &_gpos_probation_time_us, _status_flags.condition_global_position_valid);
+ 
++	//if(fabsf(lpos.vx) > 1.0f || fabsf(lpos.vy) > 1.0f || fabsf(lpos.vz) > 1.0f ){
++        //        _status_flags.condition_local_position_valid = 0;
++	//} else {
+ 	_status_flags.condition_local_position_valid =
+ 		check_posvel_validity(lpos.xy_valid && !_nav_test_failed, lpos.eph, lpos_eph_threshold_adj, lpos.timestamp,
+ 				      &_last_lpos_fail_time_us, &_lpos_probation_time_us, _status_flags.condition_local_position_valid);
+-
++	//}
+ 	_status_flags.condition_local_velocity_valid =
+ 		check_posvel_validity(lpos.v_xy_valid && !_nav_test_failed, lpos.evh, _param_com_vel_fs_evh.get(), lpos.timestamp,
+ 				      &_last_lvel_fail_time_us, &_lvel_probation_time_us, _status_flags.condition_local_velocity_valid);
+diff --git a/src/modules/ekf2/EKF2.cpp b/src/modules/ekf2/EKF2.cpp
+index 716d6e4960..2880306bef 100644
+--- a/src/modules/ekf2/EKF2.cpp
++++ b/src/modules/ekf2/EKF2.cpp
+@@ -988,7 +988,10 @@ void EKF2::PublishSensorBias(const hrt_abstime &timestamp)
+ 	    || (mag_bias - _last_mag_bias_published).longerThan(0.001f)) {
+ 
+ 		// take device ids from sensor_selection_s if not using specific vehicle_imu_s
+-		if (_device_id_gyro != 0) {
++                //TIGER: when gyro_bias exceed the gyro_bias_limit, skip the publish
++		if (_device_id_gyro != 0 && (float) fabs(gyro_bias(0)) < math::radians(10.f)
++				&& (float) fabs(gyro_bias(1)) < math::radians(10.f)
++				&& (float) fabs(gyro_bias(2)) < math::radians(10.f)) {
+ 			bias.gyro_device_id = _device_id_gyro;
+ 			gyro_bias.copyTo(bias.gyro_bias);
+ 			bias.gyro_bias_limit = math::radians(20.f); // 20 degrees/s see Ekf::constrainStates()
+diff --git a/src/modules/land_detector/MulticopterLandDetector.cpp b/src/modules/land_detector/MulticopterLandDetector.cpp
+index 15921ef30d..f764bb3034 100644
+--- a/src/modules/land_detector/MulticopterLandDetector.cpp
++++ b/src/modules/land_detector/MulticopterLandDetector.cpp
+@@ -165,10 +165,10 @@ bool MulticopterLandDetector::_get_ground_contact_state()
+ 		// an accurate in-air indication.
+ 		float max_climb_rate = math::min(land_speed_threshold * 0.5f, _param_lndmc_z_vel_max.get());
+ 
+-		if ((time_now_us - _landed_time) < LAND_DETECTOR_LAND_PHASE_TIME_US) {
++		if ((time_now_us - _landed_time) < LAND_DETECTOR_LAND_PHASE_TIME_US) {//2s
+ 			// Widen acceptance thresholds for landed state right after arming
+ 			// so that motor spool-up and other effects do not trigger false negatives.
+-			max_climb_rate = _param_lndmc_z_vel_max.get() * 2.5f;
++			max_climb_rate = _param_lndmc_z_vel_max.get() * 2.5f;// 2.5f
+ 		}
+ 
+ 		_vertical_movement = (fabsf(_vehicle_local_position.vz) > max_climb_rate);
+@@ -277,22 +277,23 @@ bool MulticopterLandDetector::_get_maybe_landed_state()
+ 	}
+ 
+ 
+-	float landThresholdFactor = 1.f;
++	//float landThresholdFactor = 1.f;//LRB
+ 
+ 	// Widen acceptance thresholds for landed state right after landed
+-	if ((time_now_us - _landed_time) < LAND_DETECTOR_LAND_PHASE_TIME_US) {
+-		landThresholdFactor = 2.5f;
+-	}
++	//if ((time_now_us - _landed_time) < LAND_DETECTOR_LAND_PHASE_TIME_US) {
++		//landThresholdFactor = 2.5f;
++	//}
++
++	// Next look if all rotation angles are not moving.//LRB
+ 
+-	// Next look if all rotation angles are not moving.
+-	vehicle_angular_velocity_s vehicle_angular_velocity{};
++	/*vehicle_angular_velocity_s vehicle_angular_velocity{};
+ 	_vehicle_angular_velocity_sub.copy(&vehicle_angular_velocity);
+ 	const Vector2f angular_velocity{vehicle_angular_velocity.xyz[0], vehicle_angular_velocity.xyz[1]};
+ 	const float max_rotation_scaled = math::radians(_param_lndmc_rot_max.get()) * landThresholdFactor;
+ 
+ 	if (angular_velocity.norm() > max_rotation_scaled) {
+ 		return false;
+-	}
++	}*/
+ 
+ 	// If vertical velocity is available: ground contact, no thrust, no movement -> landed
+ 	if (((time_now_us - _vehicle_local_position.timestamp) < 1_s) && _vehicle_local_position.v_z_valid) {

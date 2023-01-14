@@ -64,8 +64,8 @@
 
 #define BOARD_HAS_CONTROL_STATUS_LEDS 1
 #define BOARD_OVERLOAD_LED     LED_RED
-#define BOARD_ARMED_LED        LED_BLUE
-#define BOARD_ARMED_STATE_LED  LED_GREEN
+#define BOARD_ARMED_LED        LED_GREEN//LED_BLUE//LRB
+#define BOARD_ARMED_STATE_LED  LED_BLUE//LED_GREEN
 
 #ifdef CONFIG_STM32_SPI4
 #  define BOARD_HAS_BUS_MANIFEST 1 // We support a bus manifest because spi 4 is optional
