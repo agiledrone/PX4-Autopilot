@@ -19,6 +19,7 @@
         <arg name="verbose" value="$(arg verbose)"/>
         <arg name="paused" value="$(arg paused)"/>
     </include>
+    <arg name="drone_num" value="4"/>
     <!-- UAV0 -->
     <!-- MAVROS and vehicle and captain configs -->
     <arg name="ID0" value="0"/>
@@ -64,6 +65,7 @@
     <!-- captain -->
     <include file="$(find captain)/launch/captain_swarm.launch">
         <arg name="drone_id" value="$(arg ID0)"/>
+        <arg name="drone_num" value="$(arg drone_num)"/>
     </include>
     <!-- ego-planner -->
     <include file="$(find ego_planner)/launch/sim.launch">
@@ -114,6 +116,7 @@
     <!-- captain -->
     <include file="$(find captain)/launch/captain_swarm.launch">
         <arg name="drone_id" value="$(arg ID1)"/>
+        <arg name="drone_num" value="$(arg drone_num)"/>
     </include>
     <!-- ego-planner -->
     <include file="$(find ego_planner)/launch/sim.launch">
@@ -164,6 +167,7 @@
     <!-- captain -->
     <include file="$(find captain)/launch/captain_swarm.launch">
         <arg name="drone_id" value="$(arg ID2)"/>
+        <arg name="drone_num" value="$(arg drone_num)"/>
     </include>
     <!-- ego-planner -->
     <include file="$(find ego_planner)/launch/sim.launch">
@@ -214,6 +218,7 @@
     <!-- captain -->
     <include file="$(find captain)/launch/captain_swarm.launch">
         <arg name="drone_id" value="$(arg ID3)"/>
+        <arg name="drone_num" value="$(arg drone_num)"/>
     </include>
     <!-- ego-planner -->
     <include file="$(find ego_planner)/launch/sim.launch">
