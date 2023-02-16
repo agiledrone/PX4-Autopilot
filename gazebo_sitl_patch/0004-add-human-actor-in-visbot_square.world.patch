@@ -1,0 +1,127 @@
+From 226136ffc29cbda672d1adf10f1b8d9d3e5b4991 Mon Sep 17 00:00:00 2001
+From: Tiger Chen <tiger@visbot.com.cn>
+Date: Thu, 16 Feb 2023 13:36:43 +0800
+Subject: [PATCH 4/4] add human actor in visbot_square.world
+
+---
+ visbot_square.world | 108 ++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 108 insertions(+)
+ create mode 100644 visbot_square.world
+
+diff --git a/visbot_square.world b/visbot_square.world
+new file mode 100644
+index 0000000..602167c
+--- /dev/null
++++ b/visbot_square.world
+@@ -0,0 +1,108 @@
++<?xml version="1.0" ?>
++<sdf version="1.5">
++  <world name="default">
++
++    <!-- A global light source -->
++    <include>
++      <uri>model://sun</uri>
++    </include>
++
++    <!-- A ground plane -->
++    <include>
++      <uri>model://visbot_ground_new</uri>
++    </include>
++
++    <!-- Testing the automatic population of objects -->
++    <population name="box_population1">
++      <model name="box1">
++        <include>
++          <static>true</static>
++          <uri>model://unit_box</uri>
++        </include>
++      </model>
++      <pose>0 0 1 0 0 0</pose>
++      <box>
++        <size>10 10 0.01</size>
++      </box>
++      <model_count>10</model_count>
++      <distribution>
++        <type>random</type>
++      </distribution>
++    </population>
++
++	<actor name="man1">
++	  <pose>-10 -10 1 0 0 0</pose>
++	  <skin>
++		<filename>file://media/models/walk.dae</filename>
++	  </skin>
++	  <animation name="walking">
++		<filename>file://media/models/walk.dae</filename>
++		<interpolate_x>true</interpolate_x>
++	  </animation>
++	  <script>
++		<loop>true</loop>
++		<auto_start>true</auto_start>
++	     <trajectory id="1" type="walking">
++		<waypoint>
++			<time>0</time>
++			<pose>-8 -10 0 0 0 0</pose>
++		</waypoint>
++		<waypoint>
++			<time>16</time>
++			<pose>8 -10 0 0 0 0</pose>
++		</waypoint>
++		<waypoint>
++			<time>20</time>
++			<pose>10 -8 0 0 0 1.57</pose>
++		</waypoint>
++		<waypoint>
++			<time>36</time>
++			<pose>10 8 0 0 0 1.57</pose>
++		</waypoint>
++		<waypoint>
++			<time>40</time>
++			<pose>8 10 0 0 0 3.14</pose>
++		</waypoint>
++		<waypoint>
++			<time>56</time>
++			<pose>-8 10 0 0 0 3.14</pose>
++		</waypoint>
++		<waypoint>
++			<time>60</time>
++			<pose>-10 8 0 0 0 -1.57</pose>
++		</waypoint>
++		<waypoint>
++			<time>76</time>
++			<pose>-10 -8 0 0 0 -1.57</pose>
++		</waypoint>
++		<waypoint>
++			<time>80</time>
++			<pose>-8 -10 0 0 0 0</pose>
++		</waypoint>
++			</trajectory>
++	</script>
++	</actor>
++
++	<!-- actor name="man2">
++		<pose>5 5 1 0 0 -1.21</pose>
++		<skin>
++			<filename>file://media/models/walk.dae</filename>
++		</skin>
++		<animation name="walking">
++			<filename>file://media/models/walk.dae</filename>
++			<interpolate_x>true</interpolate_x>
++		</animation>
++		<plugin name="man2_plugin" filename="libActorPlugin.so">
++			<target>-3 -5 1.2138</target>
++			<target_weight>1.15</target_weight>
++			<obstacle_weight>1.8</obstacle_weight>
++			<animation_factor>5.1</animation_factor>
++			<ignore_obstacles>
++				<model>unit_box</model>
++				<model>visbot_ground_empty</model>
++			</ignore_obstacles>
++		</plugin>
++	</actor -->
++
++  </world>
++</sdf>
+-- 
+2.25.1
+

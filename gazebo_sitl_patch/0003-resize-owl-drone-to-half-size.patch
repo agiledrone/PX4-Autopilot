@@ -1,0 +1,159 @@
+From 63c5e96ad8f664f08cfd4b02f981895ddbc827a0 Mon Sep 17 00:00:00 2001
+From: Tiger Chen <tiger@visbot.com.cn>
+Date: Wed, 25 Jan 2023 18:01:10 +0800
+Subject: [PATCH 3/4] resize owl drone to half size.
+
+---
+ models/owl/owl.sdf.jinja | 38 +++++++++++++++++++-------------------
+ 1 file changed, 19 insertions(+), 19 deletions(-)
+
+diff --git a/models/owl/owl.sdf.jinja b/models/owl/owl.sdf.jinja
+index 1e655fb..9ae3b44 100644
+--- a/models/owl/owl.sdf.jinja
++++ b/models/owl/owl.sdf.jinja
+@@ -5,7 +5,7 @@
+     -->
+     <include>
+       <uri>model://visbot_camera</uri>
+-      <pose>0.1 0 0 0 0 0</pose>
++      <pose>0.05 0 0 0 0 0</pose>
+     </include>
+     <include>
+       <uri>model://fpv_cam</uri>
+@@ -29,7 +29,7 @@
+         <pose>0 0 0 0 0 0</pose>
+         <geometry>
+           <box>
+-            <size>0.47 0.47 0.11</size>
++            <size>0.235 0.235 0.055</size>
+           </box>
+         </geometry>
+         <surface>
+@@ -48,7 +48,7 @@
+         <pose>0 0 0 0 0 0</pose>
+         <geometry>
+           <mesh>
+-            <scale>1 1 1</scale>
++            <scale>0.5 0.5 0.5</scale>
+             <uri>model://owl/meshes/owl.stl</uri>
+           </mesh>
+         </geometry>
+@@ -124,7 +124,7 @@
+       </axis>
+     </joint>
+     <link name='rotor_0'>
+-      <pose>0.13 -0.22 0.023 0 0 0</pose>
++      <pose>0.065 -0.11 0.0115 0 0 0</pose>
+       <inertial>
+         <pose>0 0 0 0 0 0</pose>
+         <mass>0.005</mass>
+@@ -141,8 +141,8 @@
+         <pose>0 0 0 0 0 0</pose>
+         <geometry>
+           <cylinder>
+-            <length>0.005</length>
+-            <radius>0.128</radius>
++            <length>0.0025</length>
++            <radius>0.064</radius>
+           </cylinder>
+         </geometry>
+         <surface>
+@@ -158,7 +158,7 @@
+         <pose>0 0 0 0 0 0</pose>
+         <geometry>
+           <mesh>
+-            <scale>1 1 1</scale>
++            <scale>0.5 0.5 0.5</scale>
+             <uri>model://owl/meshes/owl_prop_ccw.dae</uri>
+           </mesh>
+         </geometry>
+@@ -189,7 +189,7 @@
+       </axis>
+     </joint>
+     <link name='rotor_1'>
+-      <pose>-0.13 0.2 0.023 0 0 0</pose>
++      <pose>-0.065 0.1 0.0115 0 0 0</pose>
+       <inertial>
+         <pose>0 0 0 0 0 0</pose>
+         <mass>0.005</mass>
+@@ -206,8 +206,8 @@
+         <pose>0 0 0 0 0 0</pose>
+         <geometry>
+           <cylinder>
+-            <length>0.005</length>
+-            <radius>0.128</radius>
++            <length>0.0025</length>
++            <radius>0.064</radius>
+           </cylinder>
+         </geometry>
+         <surface>
+@@ -223,7 +223,7 @@
+         <pose>0 0 0 0 0 0</pose>
+         <geometry>
+           <mesh>
+-            <scale>1 1 1</scale>
++            <scale>0.5 0.5 0.5</scale>
+             <uri>model://owl/meshes/owl_prop_ccw.dae</uri>
+           </mesh>
+         </geometry>
+@@ -254,7 +254,7 @@
+       </axis>
+     </joint>
+     <link name='rotor_2'>
+-      <pose>0.13 0.22 0.023 0 0 0</pose>
++      <pose>0.065 0.11 0.0115 0 0 0</pose>
+       <inertial>
+         <pose>0 0 0 0 0 0</pose>
+         <mass>0.005</mass>
+@@ -271,8 +271,8 @@
+         <pose>0 0 0 0 0 0</pose>
+         <geometry>
+           <cylinder>
+-            <length>0.005</length>
+-            <radius>0.128</radius>
++            <length>0.0025</length>
++            <radius>0.064</radius>
+           </cylinder>
+         </geometry>
+         <surface>
+@@ -288,7 +288,7 @@
+         <pose>0 0 0 0 0 0</pose>
+         <geometry>
+           <mesh>
+-            <scale>1 1 1</scale>
++            <scale>0.5 0.5 0.5</scale>
+             <uri>model://owl/meshes/owl_prop_cw.dae</uri>
+           </mesh>
+         </geometry>
+@@ -319,7 +319,7 @@
+       </axis>
+     </joint>
+     <link name='rotor_3'>
+-      <pose>-0.13 -0.2 0.023 0 0 0</pose>
++      <pose>-0.065 -0.1 0.0115 0 0 0</pose>
+       <inertial>
+         <pose>0 0 0 0 0 0</pose>
+         <mass>0.005</mass>
+@@ -336,8 +336,8 @@
+         <pose>0 0 0 0 0 0</pose>
+         <geometry>
+           <cylinder>
+-            <length>0.005</length>
+-            <radius>0.128</radius>
++            <length>0.0025</length>
++            <radius>0.064</radius>
+           </cylinder>
+         </geometry>
+         <surface>
+@@ -353,7 +353,7 @@
+         <pose>0 0 0 0 0 0</pose>
+         <geometry>
+           <mesh>
+-            <scale>1 1 1</scale>
++            <scale>0.5 0.5 0.5</scale>
+             <uri>model://owl/meshes/owl_prop_cw.dae</uri>
+           </mesh>
+         </geometry>
+-- 
+2.25.1
+
