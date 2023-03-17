@@ -66,7 +66,7 @@
         <arg name="tgt_component" value="1"/>
     </include>
     <!-- captain -->
-    <include file="$(find captain)/launch/captain_swarm.launch">
+    <include file="$(find captain)/launch/captain_swarm_sim.launch">
         <arg name="drone_id" value="$(arg ID0)"/>
         <arg name="drone_num" value="$(arg drone_num)"/>
     </include>
@@ -80,7 +80,7 @@
     <arg name="fcu_url1" default="udp://:14541@localhost:14581"/>
     <!-- PX4 SITL and vehicle and mavros spawn -->
     <include file="$(find px4)/launch/visbot_single_vehicle_spawn.launch">
-        <arg name="x" value="1"/>
+        <arg name="x" value="1.5"/>
         <arg name="y" value="0"/>
         <arg name="z" value="0"/>
         <arg name="R" value="0"/>
@@ -117,7 +117,7 @@
         <arg name="tgt_component" value="1"/>
     </include>
     <!-- captain -->
-    <include file="$(find captain)/launch/captain_swarm.launch">
+    <include file="$(find captain)/launch/captain_swarm_sim.launch">
         <arg name="drone_id" value="$(arg ID1)"/>
         <arg name="drone_num" value="$(arg drone_num)"/>
     </include>
@@ -131,7 +131,7 @@
     <arg name="fcu_url2" default="udp://:14542@localhost:14582"/>
     <!-- PX4 SITL and vehicle and mavros spawn -->
     <include file="$(find px4)/launch/visbot_single_vehicle_spawn.launch">
-        <arg name="x" value="2"/>
+        <arg name="x" value="3"/>
         <arg name="y" value="0"/>
         <arg name="z" value="0"/>
         <arg name="R" value="0"/>
@@ -168,7 +168,7 @@
         <arg name="tgt_component" value="1"/>
     </include>
     <!-- captain -->
-    <include file="$(find captain)/launch/captain_swarm.launch">
+    <include file="$(find captain)/launch/captain_swarm_sim.launch">
         <arg name="drone_id" value="$(arg ID2)"/>
         <arg name="drone_num" value="$(arg drone_num)"/>
     </include>
@@ -182,7 +182,7 @@
     <arg name="fcu_url3" default="udp://:14543@localhost:14583"/>
     <!-- PX4 SITL and vehicle and mavros spawn -->
     <include file="$(find px4)/launch/visbot_single_vehicle_spawn.launch">
-        <arg name="x" value="-1"/>
+        <arg name="x" value="-1.5"/>
         <arg name="y" value="0"/>
         <arg name="z" value="0"/>
         <arg name="R" value="0"/>
@@ -219,7 +219,7 @@
         <arg name="tgt_component" value="1"/>
     </include>
     <!-- captain -->
-    <include file="$(find captain)/launch/captain_swarm.launch">
+    <include file="$(find captain)/launch/captain_swarm_sim.launch">
         <arg name="drone_id" value="$(arg ID3)"/>
         <arg name="drone_num" value="$(arg drone_num)"/>
     </include>

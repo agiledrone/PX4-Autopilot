@@ -66,7 +66,7 @@
         <arg name="tgt_component" value="1"/>
     </include>
     <!-- captain -->
-    <include file="$(find captain)/launch/captain_swarm.launch">
+    <include file="$(find captain)/launch/captain_swarm_sim.launch">
         <arg name="drone_id" value="$(arg ID0)"/>
         <arg name="drone_num" value="$(arg drone_num)"/>
     </include>
