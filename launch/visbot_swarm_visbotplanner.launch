@@ -72,7 +72,7 @@
         <arg name="drone_num" value="$(arg drone_num)"/>
     </include>
     <!-- visbot-planner -->
-    <include file="$(find visbot_planner)/launch/swarm_sim.launch">
+    <include file="$(find visbot_planner)/launch/owl_swarm_sim.launch">
         <arg name="drone_id" value="$(arg ID0)"/>
     </include>
     <!-- UAV1 -->
@@ -124,7 +124,7 @@
         <arg name="drone_num" value="$(arg drone_num)"/>
     </include>
     <!-- visbot-planner -->
-    <include file="$(find visbot_planner)/launch/swarm_sim.launch">
+    <include file="$(find visbot_planner)/launch/owl_swarm_sim.launch">
         <arg name="drone_id" value="$(arg ID1)"/>
     </include>
     <!-- UAV2 -->
@@ -176,7 +176,7 @@
         <arg name="drone_num" value="$(arg drone_num)"/>
     </include>
     <!-- visbot-planner -->
-    <include file="$(find visbot_planner)/launch/swarm_sim.launch">
+    <include file="$(find visbot_planner)/launch/owl_swarm_sim.launch">
         <arg name="drone_id" value="$(arg ID2)"/>
     </include>
     <!-- UAV3 -->
@@ -228,7 +228,7 @@
         <arg name="drone_num" value="$(arg drone_num)"/>
     </include>
     <!-- visbot-planner -->
-    <include file="$(find visbot_planner)/launch/swarm_sim.launch">
+    <include file="$(find visbot_planner)/launch/owl_swarm_sim.launch">
         <arg name="drone_id" value="$(arg ID3)"/>
     </include>
     <node pkg="tf" type="static_transform_publisher" name="map_world_tf" args="0 0 0 0 0 0.707 0.707 map world 100" />
