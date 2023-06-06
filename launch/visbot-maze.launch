@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- MAVROS posix SITL environment launch script -->
+    <!-- launches Gazebo environment and 2x: MAVROS, PX4 SITL, captain, and spawns vehicle -->
+    <!-- vehicle model and world -->
+    <arg name="est" default="ekf2"/>
+    <arg name="vehicle" default="owl"/>
+
+    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visim_worlds/wall001.world"/>
+    <!--
+    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visbot_square.world"/>
+    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visbot_field.world"/>
+    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visbot_empty.world"/>
+    -->
+    <!-- gazebo configs -->
+    <arg name="gui" default="true"/>
+    <arg name="debug" default="false"/>
+    <arg name="verbose" default="false"/>
+    <arg name="paused" default="false"/>
+    <!-- Gazebo sim -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="world_name" value="$(arg world)"/>
+        <arg name="debug" value="$(arg debug)"/>
+        <arg name="verbose" value="$(arg verbose)"/>
+        <arg name="paused" value="$(arg paused)"/>
+    </include>
+    <!-- UAV0 -->
+    <!-- MAVROS and vehicle and captain configs -->
+    <arg name="ID0" value="0"/>
+    <arg name="fcu_url0" default="udp://:14540@localhost:14580"/>
+    <!-- PX4 SITL and vehicle and mavros spawn -->
+    <include file="$(find px4)/launch/visbot_single_vehicle_spawn.launch">
+        <arg name="x" value="8"/>
+        <arg name="y" value="-2"/>
+        <arg name="z" value="0"/>
+        <arg name="R" value="0"/>
+        <arg name="P" value="0"/>
+        <arg name="Y" value="0"/>
+        <arg name="vehicle" value="$(arg vehicle)"/>
+        <arg name="mavlink_udp_port" value="14560"/>
+        <arg name="mavlink_tcp_port" value="4560"/>
+        <arg name="ID" value="$(arg ID0)"/>
+        <arg name="gst_udp_port" value="$(eval 5600 + arg('ID0'))"/>
+        <arg name="video_uri" value="$(eval 5600 + arg('ID0'))"/>
+        <arg name="mavlink_cam_udp_port" value="$(eval 14530 + arg('ID0'))"/>
+
+        <arg name="fcu_url" value="$(arg fcu_url0)"/>
+        <arg name="gcs_url" value=""/>
+        <arg name="tgt_system" value="$(eval 1 + arg('ID0'))"/>
+        <arg name="tgt_component" value="1"/>
+    </include>
+    <!-- MAVROS 
+    <include file="$(find mavros)/launch/px4_sim.launch">
+        <arg name="fcu_url" value="$(arg fcu_url0)"/>
+        <arg name="gcs_url" value=""/>
+        <arg name="tgt_system" value="$(eval 1 + arg('ID0'))"/>
+        <arg name="drone_id" value="$(arg ID0)"/>
+        <arg name="tgt_component" value="1"/>
+    </include>
+    -->
+    <!-- geometric_controller -->
+    <include file="$(find geometric_controller)/launch/sim_swarm.launch">
+        <arg name="fcu_url" value="$(arg fcu_url0)"/>
+        <arg name="gcs_url" value=""/>
+        <arg name="tgt_system" value="$(eval 1 + arg('ID0'))"/>
+        <arg name="drone_id" value="$(arg ID0)"/>
+        <arg name="tgt_component" value="1"/>
+    </include>
+    <!-- captain -->
+    <include file="$(find captain)/launch/captain_swarm_sim.launch">
+        <arg name="drone_id" value="$(arg ID0)"/>
+    </include>
+    <!-- ego-planner -->
+    <include file="$(find ego_planner)/launch/sim.launch">
+        <arg name="drone_id" value="$(arg ID0)"/>
+    </include>
+    <node pkg="tf" type="static_transform_publisher" name="map_world_tf" args="0 0 0 0 0 0.707 0.707 map world 100" />
+</launch>
+<!-- to add more UAVs (up to 10):
+Increase the id
+Set the FCU to default="udp://:14540+id@localhost:14550+id"
+Set the malink_udp_port to 14560+id) -->
