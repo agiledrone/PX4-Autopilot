@@ -5,9 +5,12 @@
     <!-- vehicle model and world -->
     <arg name="est" default="ekf2"/>
     <arg name="vehicle" default="owl"/>
-    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visbot_field1.world"/>
-    <!-- 
-    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visbot_field.world"/>
+
+    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visim_worlds/cafe.world"/>
+    <!--
+    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visbot_square.world"/>
+    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visim_worlds/wall001.world"/>
+    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visbot_empty.world"/>
     -->
     <!-- gazebo configs -->
     <arg name="gui" default="true"/>
@@ -22,7 +25,6 @@
         <arg name="verbose" value="$(arg verbose)"/>
         <arg name="paused" value="$(arg paused)"/>
     </include>
-    <arg name="drone_num" value="2"/>
     <!-- UAV0 -->
     <!-- MAVROS and vehicle and captain configs -->
     <arg name="ID0" value="0"/>
@@ -30,7 +32,7 @@
     <!-- PX4 SITL and vehicle and mavros spawn -->
     <include file="$(find px4)/launch/visbot_single_vehicle_spawn.launch">
         <arg name="x" value="0"/>
-        <arg name="y" value="0"/>
+        <arg name="y" value="-13"/>
         <arg name="z" value="0"/>
         <arg name="R" value="0"/>
         <arg name="P" value="0"/>
@@ -66,67 +68,14 @@
         <arg name="tgt_component" value="1"/>
     </include>
     <!-- captain -->
-    <include file="$(find captain)/launch/captain_swarm_sim.launch">
+    <include file="$(find captain)/launch/captain_swarm_sim_ext.launch">
         <arg name="drone_id" value="$(arg ID0)"/>
-        <arg name="drone_num" value="$(arg drone_num)"/>
     </include>
-    <!-- ego-planner
-    -->
+    <!-- ego-planner -->
     <include file="$(find ego_planner)/launch/sim.launch">
         <arg name="drone_id" value="$(arg ID0)"/>
     </include>
-    <!-- UAV1 -->
-    <!-- MAVROS and vehicle and captain configs -->
-    <arg name="ID1" value="1"/>
-    <arg name="fcu_url1" default="udp://:14541@localhost:14581"/>
-    <!-- PX4 SITL and vehicle and mavros spawn -->
-    <include file="$(find px4)/launch/visbot_single_vehicle_spawn.launch">
-        <arg name="x" value="1"/>
-        <arg name="y" value="0"/>
-        <arg name="z" value="0"/>
-        <arg name="R" value="0"/>
-        <arg name="P" value="0"/>
-        <arg name="Y" value="0"/>
-        <arg name="vehicle" value="$(arg vehicle)"/>
-        <arg name="mavlink_udp_port" value="14561"/>
-        <arg name="mavlink_tcp_port" value="4561"/>
-        <arg name="ID" value="$(arg ID1)"/>
-        <arg name="gst_udp_port" value="$(eval 5600 + arg('ID1'))"/>
-        <arg name="video_uri" value="$(eval 5600 + arg('ID1'))"/>
-        <arg name="mavlink_cam_udp_port" value="$(eval 14530 + arg('ID1'))"/>
-
-        <arg name="fcu_url" value="$(arg fcu_url1)"/>
-        <arg name="gcs_url" value=""/>
-        <arg name="tgt_system" value="$(eval 1 + arg('ID1'))"/>
-        <arg name="tgt_component" value="1"/>
-    </include>
-    <!-- MAVROS 
-    <include file="$(find mavros)/launch/px4_sim.launch">
-        <arg name="fcu_url" value="$(arg fcu_url1)"/>
-        <arg name="gcs_url" value=""/>
-        <arg name="tgt_system" value="$(eval 1 + arg('ID1'))"/>
-        <arg name="drone_id" value="$(arg ID1)"/>
-        <arg name="tgt_component" value="1"/>
-    </include>
-    -->
-    <!-- geometric_controller -->
-    <include file="$(find geometric_controller)/launch/sim_swarm.launch">
-        <arg name="fcu_url" value="$(arg fcu_url1)"/>
-        <arg name="gcs_url" value=""/>
-        <arg name="tgt_system" value="$(eval 1 + arg('ID1'))"/>
-        <arg name="drone_id" value="$(arg ID1)"/>
-        <arg name="tgt_component" value="1"/>
-    </include>
-    <!-- captain -->
-    <include file="$(find captain)/launch/captain_swarm.launch">
-        <arg name="drone_id" value="$(arg ID1)"/>
-        <arg name="drone_num" value="$(arg drone_num)"/>
-    </include>
-    <!-- ego-planner 
-    -->
-    <include file="$(find ego_planner)/launch/sim.launch">
-        <arg name="drone_id" value="$(arg ID1)"/>
-    </include>
+    <node pkg="tf" type="static_transform_publisher" name="map_world_tf" args="0 0 0 0 0 0.707 0.707 map world 100" />
 </launch>
 <!-- to add more UAVs (up to 10):
 Increase the id

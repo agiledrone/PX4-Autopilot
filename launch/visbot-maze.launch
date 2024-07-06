@@ -5,11 +5,8 @@
     <!-- vehicle model and world -->
     <arg name="est" default="ekf2"/>
     <arg name="vehicle" default="owl"/>
-
     <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visim_worlds/wall001.world"/>
     <!--
-    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visbot_square.world"/>
-    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visbot_field.world"/>
     <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visbot_empty.world"/>
     -->
     <!-- gazebo configs -->

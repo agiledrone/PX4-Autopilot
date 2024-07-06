@@ -3,19 +3,17 @@
     <!-- MAVROS posix SITL environment launch script -->
     <!-- launches Gazebo environment and 2x: MAVROS, PX4 SITL, captain, and spawns vehicle -->
     <!-- vehicle model and world -->
+
+
     <arg name="est" default="ekf2" />
     <arg name="vehicle" default="owl" />
-
-    <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visbot_field.world" /> -->
+    <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visbot_field1.world" /> -->
     <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/forest.world" /> -->
-    <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/forest_final.world" /> -->
-    <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/carpark1.world" /> -->
-    <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/vicon_room.world" /> -->
-    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/vicon_room2.world" />
-    <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visbot_square1.world"/> -->
-    <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visbot_square.world"/> -->
-    <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visbot_empty.world"/> -->
-
+    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/vicon_double.world" />
+    <!-- <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/vicon_room_yyd44.world" /> -->
+    <!--
+    <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/visbot_empty.world"/>
+    -->
     <!-- gazebo configs -->
     <arg name="gui" default="true" />
     <arg name="debug" default="false" />
@@ -23,20 +21,21 @@
     <arg name="paused" default="false" />
     <!-- Gazebo sim -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <arg name="gui" value="$(arg gui)" />
+        <arg name="gui" value="$(arg gui)" />s
         <arg name="world_name" value="$(arg world)" />
         <arg name="debug" value="$(arg debug)" />
         <arg name="verbose" value="$(arg verbose)" />
         <arg name="paused" value="$(arg paused)" />
     </include>
+    <arg name="drone_num" value="1" />
     <!-- UAV0 -->
     <!-- MAVROS and vehicle and captain configs -->
     <arg name="ID0" value="0" />
     <arg name="fcu_url0" default="udp://:14540@localhost:14580" />
     <!-- PX4 SITL and vehicle and mavros spawn -->
     <include file="$(find px4)/launch/visbot_single_vehicle_spawn.launch">
-        <arg name="x" value="0" />
-        <arg name="y" value="0" />
+        <arg name="x" value="3" />
+        <arg name="y" value="3" />
         <arg name="z" value="0" />
         <arg name="R" value="0" />
         <arg name="P" value="0" />
@@ -74,18 +73,18 @@
     <!-- captain -->
     <include file="$(find captain)/launch/captain_swarm_sim.launch">
         <arg name="drone_id" value="$(arg ID0)" />
+        <arg name="drone_num" value="$(arg drone_num)" />
     </include>
     <!-- ego-planner -->
     <include file="$(find ego_planner)/launch/sim.launch">
         <arg name="drone_id" value="$(arg ID0)" />
     </include>
-
+   
     <node pkg="tf" type="static_transform_publisher" name="map_world_tf"
         args="0 0 0 0 0 0.707 0.707 map world 100" />
 
     <node name="rviz" pkg="rviz" type="rviz"
-        args="-d /home/visbot/VISIM_swarm/ros_ws/src/swarm-rviz/config/rviz.rviz" />
-
+        args="-d /home/visbot/VISIM_swarm/ros_ws/src/swarm-rviz/config/swarm_sim.rviz" />
 </launch>
 <!-- to add more UAVs (up to 10):
 Increase the id
